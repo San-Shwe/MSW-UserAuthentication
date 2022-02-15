@@ -6,23 +6,21 @@ strDir = CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.
 strFE = strDir & "\UserAuthorization_be.accdb"
 'strBE = strDir & "\UserAuthorization_be.accdb"
 
-strPVCBE =  "\\process-pvc\e\10. Process PVC Database\process_pvc_be.accdb"
-strOPPBE =  "\\process-opp\e\Process OPP Database\process_opp_be.accdb"
-strUserAuthBE = "\\process-opp\e\Process OPP Database\UserAuthorization_be.accdb"
+strPVCBE =  "C:\Kaizaki\Document\MS Access\MSW-PROCESS-PVC\process_pvc_be.accdb"
+strOPPBE =  "C:\Kaizaki\Document\MS Access\MSW-PROCESS-OPP\process_opp_be.accdb"
+strUserAuthBE = "C:\Kaizaki\Document\MS Access\MSW-UserAuthentication\UserAuthorization_be.accdb"
 
 set app = CreateObject("Access.Application")
 set wks = app.dbEngine.createworkspace("", "admin", "", 2) 'dbUseJet
 set db = wks.opendatabase(strFE)
 
 LinkMyTable db, strOPPBE, "FG", "FG"
+LinkMyTable db, strOPPBE, "OF", "OPP_OF"
 LinkMyTable db, strOPPBE, "tblOPPSummary", "tblOPPSummary"
 
 LinkMyTable db, strPVCBE, "FG", "FG"
+LinkMyTable db, strPVCBE, "OF", "PVC_OF"
 LinkMyTable db, strPVCBE, "tblPVCSummary", "tblPVCSummary"
-
-LinkMyTable db, strUserAuthBE, "tblEmployeeAccess", "tblEmployeeAccess"
-LinkMyTable db, strUserAuthBE, "tblEmployees", "tblEmployees"
-LinkMyTable db, strUserAuthBE, "tblUser", "tblUser"
 
 LinkMyTable db, strUserAuthBE, "tblEmployeeAccess", "tblEmployeeAccess"
 LinkMyTable db, strUserAuthBE, "tblEmployees", "tblEmployees"
